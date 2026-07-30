@@ -68,7 +68,7 @@ extension Memory.Map.Access {
         let access: Memory.Map.Access
 
         @inlinable
-        init(access: Memory.Map.Access) {
+        package init(access: Memory.Map.Access) {
             self.access = access
         }
 
