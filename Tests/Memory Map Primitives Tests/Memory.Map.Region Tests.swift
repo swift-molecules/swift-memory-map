@@ -45,7 +45,9 @@ extension Memory.Map.Region.Tests.Unit {
 // MARK: - Edge Case
 
 extension Memory.Map.Region.Tests.`Edge Case` {
-    /// F-001 regression (fable-448): `Memory.Map.Region` previously exposed
+    /// F-001 regression (fable-448).
+    ///
+    /// `Memory.Map.Region` previously exposed
     /// `@safe span` / `mutableSpan` computed properties. Because `Region` is
     /// `Copyable` + `Sendable`, a caller could copy it out of a live
     /// `Memory.Map` (via the public `region` accessor), let the owning
