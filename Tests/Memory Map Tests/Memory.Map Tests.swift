@@ -1,6 +1,6 @@
 import Testing
 
-@testable import Memory_Map_Primitives
+@testable import Memory_Map
 
 extension Memory.Map {
     @Suite struct Tests {

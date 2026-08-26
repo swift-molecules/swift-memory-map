@@ -1,16 +1,16 @@
-public import Error_Primitives
+public import Error
 
 extension Memory.Map {
 
     public enum Error: Swift.Error, Sendable, Equatable, Hashable {
 
-        case map(Error_Primitives.Error.Code)
+        case map(Error.Error.Code)
 
-        case unmap(Error_Primitives.Error.Code)
+        case unmap(Error.Error.Code)
 
-        case sync(Error_Primitives.Error.Code)
+        case sync(Error.Error.Code)
 
-        case protect(Error_Primitives.Error.Code)
+        case protect(Error.Error.Code)
 
         case exhausted
 

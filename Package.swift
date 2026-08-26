@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-memory-map-primitives",
+    name: "swift-memory-map",
     platforms: [
         .macOS(.v27),
         .iOS(.v27),
@@ -13,62 +13,62 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Memory Map Primitives",
-            targets: ["Memory Map Primitives"]
+            name: "Memory Map",
+            targets: ["Memory Map"]
         ),
         .library(
-            name: "Memory Map Primitives Test Support",
-            targets: ["Memory Map Primitives Test Support"]
+            name: "Memory Map Test Support",
+            targets: ["Memory Map Test Support"]
         ),
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-memory-primitives.git",
+            url: "https://github.com/swift-molecules/swift-memory.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-memory-lock-primitives.git",
+            url: "https://github.com/swift-molecules/swift-memory-lock.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-byte-primitives.git",
+            url: "https://github.com/swift-molecules/swift-byte.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-error-primitives.git",
+            url: "https://github.com/swift-molecules/swift-error.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-span-primitives.git",
+            url: "https://github.com/swift-molecules/swift-span.git",
             branch: "main"
         ),
     ],
     targets: [
         .target(
-            name: "Memory Map Primitives",
+            name: "Memory Map",
             dependencies: [
-                .product(name: "Memory Address Primitives", package: "swift-memory-primitives"),
-                .product(name: "Memory Lock Primitives", package: "swift-memory-lock-primitives"),
-                .product(name: "Byte Primitives", package: "swift-byte-primitives"),
-                .product(name: "Error Primitives", package: "swift-error-primitives"),
-                .product(name: "Span Protocol Primitives", package: "swift-span-primitives"),
+                .product(name: "Memory Address", package: "swift-memory"),
+                .product(name: "Memory Lock", package: "swift-memory-lock"),
+                .product(name: "Byte", package: "swift-byte"),
+                .product(name: "Error", package: "swift-error"),
+                .product(name: "Span Protocol", package: "swift-span"),
             ]
         ),
         .target(
-            name: "Memory Map Primitives Test Support",
+            name: "Memory Map Test Support",
             dependencies: [
-                "Memory Map Primitives",
+                "Memory Map",
                 .product(
-                    name: "Memory Primitives Test Support",
-                    package: "swift-memory-primitives"
+                    name: "Memory Test Support",
+                    package: "swift-memory"
                 ),
             ],
             path: "Tests/Support"
         ),
         .testTarget(
-            name: "Memory Map Primitives Tests",
+            name: "Memory Map Tests",
             dependencies: [
-                "Memory Map Primitives"
+                "Memory Map"
             ]
         ),
     ],

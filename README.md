@@ -1,4 +1,4 @@
-# Memory Map Primitives
+# Memory Map
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
@@ -11,7 +11,7 @@ Memory-mapping (`mmap`) vocabulary for Swift — the `Memory.Map` namespace and 
 `Memory.Map` is both a namespace for memory-mapping vocabulary and a move-only (`~Copyable`) envelope around one live mapping. This package holds the *shapes* — access permissions, sharing semantics, SIGBUS-safety posture, protection flags, advice, errors — so the same values travel unchanged from the platform package that performs the syscall (POSIX in [swift-iso-9945](https://github.com/swift-standards/swift-iso-9945), Windows in [swift-windows-standard](https://github.com/swift-standards/swift-windows-standard)) through every layer that consumes them.
 
 ```swift
-import Memory_Map_Primitives
+import Memory_Map
 
 // Describe how a file should be mapped — the vocabulary an L2/L3 mapping
 // API consumes when it calls mmap on your behalf.
@@ -30,7 +30,7 @@ print(access.allows.write)   // true
 Because `Memory.Map` conforms to `Span.Protocol`, a live mapping exposes its user-visible bytes for zero-copy reads — bounds-checked, lifetime-bound to the envelope, with no `withUnsafeBytes` ceremony:
 
 ```swift
-import Memory_Map_Primitives
+import Memory_Map
 
 // `map` is produced by a platform package; this package is the shared
 // vocabulary it populates. Reading borrows the envelope for the call.
@@ -48,7 +48,7 @@ The `span` is computed over the *user window* (the requested range), not the pag
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-primitives/swift-memory-map-primitives.git", branch: "main")
+    .package(url: "https://github.com/swift-molecules/swift-memory-map.git", branch: "main")
 ]
 ```
 
@@ -56,7 +56,7 @@ dependencies: [
 .target(
     name: "App",
     dependencies: [
-        .product(name: "Memory Map Primitives", package: "swift-memory-map-primitives"),
+        .product(name: "Memory Map", package: "swift-memory-map"),
     ]
 )
 ```
@@ -67,12 +67,12 @@ Requires Swift 6.3.1 and macOS 26 / iOS 26 / tvOS 26 / watchOS 26 / visionOS 26 
 
 ## Architecture
 
-Two library products. Sibling extraction of [swift-memory-primitives](https://github.com/swift-primitives/swift-memory-primitives): this package holds mapping vocabulary only — the syscall implementations live in platform packages as `extension Memory.Map`.
+Two library products. Sibling extraction of [swift-memory](https://github.com/swift-molecules/swift-memory): this package holds mapping vocabulary only — the syscall implementations live in platform packages as `extension Memory.Map`.
 
 | Product | Target | Purpose |
 |---------|--------|---------|
-| `Memory Map Primitives` | `Sources/Memory Map Primitives/` | The `Memory.Map` namespace and its move-only RAII envelope: `Region`, `Protection`, `Sharing`, `Advice`, `Anonymous`, `File`, `Options`, `Access` (with `Allows`), `Safety` (with `Scope` and `Default`), `Error` (with `Validation`), plus the zero-copy `Span.Protocol` read surface. |
-| `Memory Map Primitives Test Support` | `Tests/Support/` | Re-exports the main target and memory test support for downstream test consumers. |
+| `Memory Map` | `Sources/Memory Map/` | The `Memory.Map` namespace and its move-only RAII envelope: `Region`, `Protection`, `Sharing`, `Advice`, `Anonymous`, `File`, `Options`, `Access` (with `Allows`), `Safety` (with `Scope` and `Default`), `Error` (with `Validation`), plus the zero-copy `Span.Protocol` read surface. |
+| `Memory Map Test Support` | `Tests/Support/` | Re-exports the main target and memory test support for downstream test consumers. |
 
 Foundation-free.
 

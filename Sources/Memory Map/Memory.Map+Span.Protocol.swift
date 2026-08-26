@@ -1,5 +1,5 @@
-public import Byte_Primitives
-public import Span_Protocol_Primitives
+public import Byte
+public import Span_Protocol
 
 extension Memory.Map: Span.`Protocol` {
 

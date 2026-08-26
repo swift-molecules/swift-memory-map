@@ -1,7 +1,7 @@
 # .github/metadata.yaml
-description: "Memory Map primitives — mmap/munmap vocabulary (Memory.Map + Region/Protection/Sharing/Advice/etc). Extracted from swift-memory-primitives for scope purity; syscall implementations live in swift-iso-9945 and swift-windows-standard."
+description: "Memory Map — mmap/munmap vocabulary (Memory.Map + Region/Protection/Sharing/Advice/etc). Extracted from swift-memory for scope purity; syscall implementations live in swift-iso-9945 and swift-windows-standard."
 topics:
-  - primitives
+  - molecules
   - memory
   - mmap
   - virtual-memory
